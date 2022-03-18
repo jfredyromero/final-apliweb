@@ -8,17 +8,17 @@ export class LoginService {
 	private administradoresSimulados = [
 		{
 			nombre: "Jhon Fredy",
-			username: "jfredyromero",
+			username: "jfredyromero@test.com",
 			password: "pass1234",
 		},
 		{
 			nombre: "Lina Muñoz",
-			username: "linavm",
+			username: "linavm@test.com",
 			password: "pass1234",
 		},
 		{
 			nombre: "Javier Hurtado",
-			username: "javhur",
+			username: "javhur@test.com",
 			password: "pass1234",
 		},
 	];
