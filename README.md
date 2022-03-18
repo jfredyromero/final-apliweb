@@ -7,7 +7,7 @@ This repository contains the source code of the *Angular Final Project*.
 At first, you need to have installed on your machine the most recent version of Node.js. You can download it from here: https://nodejs.org/es/
 
 You also need to have the latest version of Vue.js installed and its official CLI. You can download it by running the next command:
->npm **install** -g @vue/cli
+>npm **install** -g @angular/cli
 
 ### frontend:
 
