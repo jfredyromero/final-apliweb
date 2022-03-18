@@ -1,0 +1,79 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Usuarios</h4>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table">
+								<thead class="text-primary">
+									<th>Cédula</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>País</th>
+									<th>Salario</th>
+									<th>Actions</th>
+								</thead>
+								<tbody>
+									<tr
+										*ngFor="
+											let user of usuarios;
+											let i = index
+										"
+										data-id="{{ i }}"
+									>
+										<td>{{ user.cedula }}</td>
+										<td>{{ user.nombre }}</td>
+										<td>{{ user.apellido }}</td>
+										<td>{{ user.pais }}</td>
+										<td>${{ user.salario }}</td>
+										<td
+											class="td-actions"
+											style="width: 120px"
+										>
+											<button
+												mat-raised-button
+												type="button"
+												matTooltip="Edit Task"
+												[matTooltipPosition]="'above'"
+												class="btn btn-primary btn-link btn-sm btn-just-icon mr-2"
+												(click)="onEdit(user)"
+											>
+												<i
+													class="material-icons"
+													data-id="{{ i }}"
+													>edit</i
+												>
+											</button>
+											<button
+												mat-raised-button
+												type="button"
+												matTooltip="Remove"
+												[matTooltipPosition]="'above'"
+												class="btn btn-danger btn-link btn-sm btn-just-icon"
+												(click)="onRemove(i)"
+											>
+												<i
+													class="material-icons"
+													data-id="{{ i }}"
+													>close</i
+												>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="progress-spinner" *ngIf="isLoading">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="blocker" *ngIf="isLoading"></div>

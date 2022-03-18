@@ -1,0 +1,122 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Agregar Usuario</h4>
+						<p class="card-category">
+							Llena los siguientes campos...
+						</p>
+					</div>
+					<div class="card-body px-10">
+						<form [formGroup]="usuarioForm">
+							<div class="row"></div>
+							<div class="row">
+								<div class="col-md-6">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Nombres"
+											formControlName="nombre"
+										/>
+									</mat-form-field>
+								</div>
+								<div class="col-md-6">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Apellidos"
+											formControlName="apellido"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Cédula"
+											type="number"
+											formControlName="cedula"
+										/>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											type="text"
+											placeholder="Pais"
+											formControlName="pais"
+											matInput
+											[matAutocomplete]="auto"
+										/>
+										<mat-autocomplete
+											#auto="matAutocomplete"
+											appearance="fill"
+										>
+											<mat-option
+												*ngFor="
+													let option of filteredOptions
+														| async
+												"
+												[value]="option"
+											>
+												{{ option }}
+											</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Salario"
+											formControlName="salario"
+											type="number"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+							<button
+								mat-raised-button
+								type="button"
+								(click)="onSubmit()"
+								class="btn btn-primary pull-right"
+							>
+								Agregar
+							</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card card-profile">
+					<div class="card-avatar">
+						<a href="javascript:void(0)">
+							<img
+								class="img"
+								src="./assets/img/faces/marc.jpg"
+							/>
+						</a>
+					</div>
+					<div class="card-body">
+						<h6 class="card-category text-gray">Usuario:</h6>
+						<h4 class="card-title">{{ credenciales.nombre }}</h4>
+						<a
+							href="javascript:void(0)"
+							class="btn btn-primary btn-round"
+							>Follow</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="progress-spinner" *ngIf="isLoading">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="blocker" *ngIf="isLoading"></div>

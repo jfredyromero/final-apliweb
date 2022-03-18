@@ -1,0 +1,121 @@
+<mat-dialog-content class="mat-typography">
+	<div class="main-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Editar Usuario</h4>
+						<p class="card-category">
+							Llena los siguientes campos...
+						</p>
+					</div>
+					<div class="card-body px-10">
+						<form [formGroup]="usuarioForm">
+							<div class="row"></div>
+							<div class="row">
+								<div class="col-md-6">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Nombres"
+											formControlName="nombre"
+											value="{{
+												usuarioForm.get('nombre').value
+											}}"
+										/>
+									</mat-form-field>
+								</div>
+								<div class="col-md-6">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Apellidos"
+											formControlName="apellido"
+											value="{{
+												usuarioForm.get('apellido')
+													.value
+											}}"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Cédula"
+											type="number"
+											formControlName="cedula"
+											value="{{
+												usuarioForm.get('cedula').value
+											}}"
+										/>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											type="text"
+											placeholder="Pais"
+											formControlName="pais"
+											matInput
+											[matAutocomplete]="auto"
+											value="{{
+												usuarioForm.get('pais').value
+											}}"
+										/>
+										<mat-autocomplete
+											#auto="matAutocomplete"
+											appearance="fill"
+										>
+											<mat-option
+												*ngFor="
+													let option of filteredOptions
+														| async
+												"
+												[value]="option"
+											>
+												{{ option }}
+											</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input
+											matInput
+											placeholder="Salario"
+											formControlName="salario"
+											type="number"
+											value="{{
+												usuarioForm.get('salario').value
+											}}"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close class="btn pull-right">
+		Cancelar
+	</button>
+	<button
+		mat-raised-button
+		(click)="onSubmit()"
+		class="btn btn-primary pull-right"
+	>
+		Guardar
+	</button>
+</mat-dialog-actions>
+<div class="progress-spinner" *ngIf="isLoading">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="blocker" *ngIf="isLoading"></div>
