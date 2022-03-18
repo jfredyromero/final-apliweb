@@ -1,16 +1,16 @@
 import { Routes } from "@angular/router";
 
-import { ListarUsuariosComponent } from "app/listar-usuarios/listar-usuarios.component";
-import { AgregarUsuarioComponent } from "app/agregar-usuario/agregar-usuario.component";
+import { ListarLibrosComponent } from "app/listar-libros/listar-libros.component";
+import { AgregarLibroComponent } from "app/agregar-libro/agregar-libro.component";
 
 export const AdminLayoutRoutes: Routes = [
 	{ path: "", redirectTo: "listar", pathMatch: "full" },
 	{
 		path: "listar",
-		component: ListarUsuariosComponent,
+		component: ListarLibrosComponent,
 	},
 	{
 		path: "agregar",
-		component: AgregarUsuarioComponent,
+		component: AgregarLibroComponent,
 	},
 ];

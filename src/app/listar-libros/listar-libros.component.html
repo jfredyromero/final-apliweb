@@ -4,32 +4,46 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header card-header-primary">
-						<h4 class="card-title">Usuarios</h4>
+						<h4 class="card-title">Libros</h4>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table">
 								<thead class="text-primary">
-									<th>Cédula</th>
-									<th>Nombre</th>
-									<th>Apellido</th>
-									<th>País</th>
-									<th>Salario</th>
+									<th>Titulo</th>
+									<th>Autor</th>
+									<th>ISBN</th>
+									<th>N° Páginas</th>
+									<th>Editorial</th>
+									<th>Fecha Publicacion</th>
+									<th>Fecha Registro</th>
 									<th>Actions</th>
 								</thead>
 								<tbody>
 									<tr
 										*ngFor="
-											let user of usuarios;
+											let libro of libros;
 											let i = index
 										"
 										data-id="{{ i }}"
 									>
-										<td>{{ user.cedula }}</td>
-										<td>{{ user.nombre }}</td>
-										<td>{{ user.apellido }}</td>
-										<td>{{ user.pais }}</td>
-										<td>${{ user.salario }}</td>
+										<td>{{ libro.titulo }}</td>
+										<td>{{ libro.autor }}</td>
+										<td>{{ libro.ISBN }}</td>
+										<td>{{ libro.numeroPaginas }}</td>
+										<td>{{ libro.editorial }}</td>
+										<td>
+											{{
+												libro.fechaPublicacion
+													| date: "MMM d, y"
+											}}
+										</td>
+										<td>
+											{{
+												libro.fechaRegistro
+													| date: "MMM d, y - h:mm a"
+											}}
+										</td>
 										<td
 											class="td-actions"
 											style="width: 120px"
@@ -40,7 +54,7 @@
 												matTooltip="Edit Task"
 												[matTooltipPosition]="'above'"
 												class="btn btn-primary btn-link btn-sm btn-just-icon mr-2"
-												(click)="onEdit(user)"
+												(click)="onEdit(libro)"
 											>
 												<i
 													class="material-icons"

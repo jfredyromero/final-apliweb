@@ -30,7 +30,7 @@ export class LoginComponent {
 					(res: any) => {
 						if (res) {
 							sessionStorage.setItem("user", JSON.stringify(res));
-							this.router.navigate(["/usuarios"]);
+							this.router.navigate(["/libros"]);
 						} else {
 							this.error = "Credenciales Inválidas";
 							this.form.reset();

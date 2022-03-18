@@ -17,7 +17,7 @@ const routes: Routes = [
 		component: LoginComponent,
 	},
 	{
-		path: "usuarios",
+		path: "libros",
 		component: AdminLayoutComponent,
 		loadChildren: () =>
 			import("./layouts/admin-layout/admin-layout.module").then(

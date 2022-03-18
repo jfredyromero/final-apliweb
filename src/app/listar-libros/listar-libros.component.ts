@@ -1,21 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { EditarUsuarioComponent } from "app/editar-usuario/editar-usuario.component";
-import { Usuario } from "app/models/Usuario";
-import { UsuarioService } from "app/service/usuario.service";
+import { EditarLibroComponent } from "app/editar-libro/editar-libro.component";
+import { Libro } from "app/models/Libro";
+import { LibroService } from "app/service/libro.service";
 declare var $: any;
 @Component({
-	selector: "app-listar-usuarios",
-	templateUrl: "./listar-usuarios.component.html",
-	styleUrls: ["./listar-usuarios.component.css"],
+	selector: "app-listar-libros",
+	templateUrl: "./listar-libros.component.html",
+	styleUrls: ["./listar-libros.component.css"],
 })
-export class ListarUsuariosComponent implements OnInit {
-	usuarios: Usuario[];
+export class ListarLibrosComponent implements OnInit {
+	libros: Libro[];
 	isLoading: boolean;
 	credenciales: any;
 	constructor(
-		private service: UsuarioService,
+		private service: LibroService,
 		private router: Router,
 		public dialog: MatDialog
 	) {}
@@ -27,7 +27,7 @@ export class ListarUsuariosComponent implements OnInit {
 			});
 		} else {
 			this.getCredenciales();
-			this.showUsuarios();
+			this.showLibros();
 		}
 	}
 
@@ -35,18 +35,18 @@ export class ListarUsuariosComponent implements OnInit {
 		this.credenciales = JSON.parse(sessionStorage.getItem("user"));
 	}
 
-	showUsuarios() {
+	showLibros() {
 		this.isLoading = true;
-		this.service.getUsuarios().subscribe(
-			(res: Usuario[]) => {
-				this.usuarios = res;
-				this.usuarios = this.usuarios.reverse();
+		this.service.getLibros().subscribe(
+			(res: Libro[]) => {
+				this.libros = res;
+				this.libros = this.libros.reverse();
 			},
 			(err: Error) => {
 				console.log(err.message);
 			},
 			() => {
-				this.showNotification("Usuarios Cargados", "success");
+				this.showNotification("Libros Cargados", "success");
 				this.isLoading = false;
 			}
 		);
@@ -54,15 +54,15 @@ export class ListarUsuariosComponent implements OnInit {
 
 	onRemove(index: number) {
 		this.isLoading = true;
-		this.service.removeUsuario(index).subscribe(
+		this.service.removeLibro(index).subscribe(
 			(res: boolean) => {
 				res
 					? this.showNotification(
-							"Usuario eliminado de forma exitosa!",
+							"Libro eliminado de forma exitosa!",
 							"success"
 					  )
 					: this.showNotification(
-							"Error al eliminar el usuario",
+							"Error al eliminar el libro",
 							"danger"
 					  );
 			},
@@ -71,13 +71,13 @@ export class ListarUsuariosComponent implements OnInit {
 			},
 			() => {
 				this.isLoading = false;
-				this.showUsuarios;
+				this.showLibros;
 			}
 		);
 	}
 
-	onEdit(user: Usuario, index: number) {
-		const dialogRef = this.dialog.open(EditarUsuarioComponent, {
+	onEdit(user: Libro, index: number) {
+		const dialogRef = this.dialog.open(EditarLibroComponent, {
 			data: {
 				user: user,
 				index: index,
